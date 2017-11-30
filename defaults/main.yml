@@ -1,0 +1,38 @@
+---
+# Where to store the CA and certificate files. By default this
+# will expand to user's LOCAL $HOME (the user that run's "ansible-playbook ..."
+# plus "/consul/ssl". That means if the user's $HOME directory is e.g.
+# "/home/da_user" then "consul_ca_conf_directory" will have a value of
+# "/home/da_user/consul/ssl".
+consul_ca_conf_directory: "{{ '~/consul/ssl' | expanduser }}"
+# The user who own's the certificate directory and files
+consul_ca_certificate_owner: "root"
+# The group which own's the certificate directory and files
+consul_ca_certificate_group: "root"
+
+# Expiry for Consul root certificate
+ca_consul_expiry: "87600h"
+
+#
+# Certificate authority for Consul certificates
+#
+ca_consul_csr_cn: "Consul"
+ca_consul_csr_key_algo: "rsa"
+ca_consul_csr_key_size: "2048"
+ca_consul_csr_names_c: "DE"
+ca_consul_csr_names_l: "The_Internet"
+ca_consul_csr_names_o: "Consul"
+ca_consul_csr_names_ou: "BY"
+ca_consul_csr_names_st: "Bayern"
+
+#
+# CSR parameter for Consul certificate
+#
+consul_csr_cn: "server.dc1.consul"
+consul_csr_key_algo: "rsa"
+consul_csr_key_size: "2048"
+consul_csr_names_c: "DE"
+consul_csr_names_l: "The_Internet"
+consul_csr_names_o: "Consul"
+consul_csr_names_ou: "BY"
+consul_csr_names_st: "Bayern"
