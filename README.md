@@ -1,7 +1,7 @@
 ansible-role-consul-ca
 ======================
 
-This role is used in [Kubernetes the Not So Hard Way With Ansible (at Scaleway) - Part 8 - Ingress with Traefik](https://www.tauceti.blog/post/kubernetes-the-not-so-hard-way-with-ansible-at-scaleway-part-8/). It creates a CA (certificate authority) for Consul certificates and the certificates needed to secure communication between the Consul daemons and Traefik proxy used in the blog post mentioned above. This role is meant to be used for exactly this purpose but it should be useable for other use cases too as it has no dependencies besides [CFSSL](https://github.com/cloudflare/cfssl) PKI toolkit binaries installed (which you would need anyway's).
+This role is used in [Kubernetes the Not So Hard Way With Ansible - Ingress with Traefik](https://www.tauceti.blog/post/kubernetes-the-not-so-hard-way-with-ansible-ingress-with-traefik/). It creates a CA (certificate authority) for Consul certificates and the certificates needed to secure communication between the Consul daemons and Traefik proxy used in the blog post mentioned above. This role is meant to be used for exactly this purpose but it should be useable for other use cases too as it has no dependencies besides [CFSSL](https://github.com/cloudflare/cfssl) PKI toolkit binaries installed (also see my Ansible role for this purpose: https://github.com/githubixx/ansible-role-cfssl).
 
 Versions
 --------
@@ -10,6 +10,11 @@ I tag every release and try to stay with [semantic versioning](http://semver.org
 
 Changelog
 ---------
+
+**r1.0.1_v1.0.2**
+
+- update README
+
 **r1.0.0_v1.0.2**
 
 - only Git tag update for Consul v1.0.2
