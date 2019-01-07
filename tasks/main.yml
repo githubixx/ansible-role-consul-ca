@@ -1,9 +1,9 @@
 ---
 - name: Create directory for CA and certificate files
   file:
-    path: "{{consul_ca_conf_directory}}"
-    owner: "{{consul_ca_certificate_owner}}"
-    group: "{{consul_ca_certificate_group}}"
+    path: "{{ consul_ca_conf_directory }}"
+    owner: "{{ consul_ca_certificate_owner }}"
+    group: "{{ consul_ca_certificate_group }}"
     mode: 0755
     state: directory
   tags:
@@ -12,9 +12,9 @@
 - name: Create Consul CA configuration file
   template:
     src: "ca-consul-config.json.j2"
-    dest: "{{consul_ca_conf_directory}}/ca-consul-config.json"
-    owner: "{{consul_ca_certificate_owner}}"
-    group: "{{consul_ca_certificate_group}}"
+    dest: "{{ consul_ca_conf_directory }}/ca-consul-config.json"
+    owner: "{{ consul_ca_certificate_owner }}"
+    group: "{{ consul_ca_certificate_group }}"
     mode: 0600
   tags:
     - consul-ca
@@ -22,9 +22,9 @@
 - name: Copy the Consul CA certificate request file (CSR)
   template:
     src: "ca-consul-csr.json.j2"
-    dest: "{{consul_ca_conf_directory}}/ca-consul-csr.json"
-    owner: "{{consul_ca_certificate_owner}}"
-    group: "{{consul_ca_certificate_group}}"
+    dest: "{{ consul_ca_conf_directory }}/ca-consul-csr.json"
+    owner: "{{ consul_ca_certificate_owner }}"
+    group: "{{ consul_ca_certificate_group }}"
     mode: 0600
   tags:
     - consul-ca
@@ -32,25 +32,26 @@
 - name: Generate the Consul CA and private key
   shell: cfssl gencert -initca ca-consul-csr.json | cfssljson -bare ca-consul
   args:
-    chdir: "{{consul_ca_conf_directory}}"
-    creates: "{{consul_ca_conf_directory}}/ca-consul-key.pem"
+    chdir: "{{ consul_ca_conf_directory }}"
+    creates: "{{ consul_ca_conf_directory }}/ca-consul-key.pem"
   tags:
     - consul-ca
 
 - name: Create the Consul key CSR file
   template:
     src: cert-consul-csr.json.j2
-    dest: "{{consul_ca_conf_directory}}/cert-consul-csr.json"
-    owner: "{{consul_ca_certificate_owner}}"
-    group: "{{consul_ca_certificate_group}}"
+    dest: "{{ consul_ca_conf_directory }}/cert-consul-csr.json"
+    owner: "{{ consul_ca_certificate_owner }}"
+    group: "{{ consul_ca_certificate_group }}"
     mode: 0600
   tags:
     - consul-ca
 
 - name: Generate TLS certificate for Consul
-  shell: "cfssl gencert -ca=ca-consul.pem -ca-key=ca-consul-key.pem -config=ca-consul-config.json -hostname={{consul_csr_cn}} -profile=default cert-consul-csr.json | cfssljson -bare cert-consul"
+  shell: "cfssl gencert -ca=ca-consul.pem -ca-key=ca-consul-key.pem -config=ca-consul-config.json -hostname={{ consul_csr_cn }} -profile=default cert-consul-csr.json | cfssljson -bare cert-consul"
   args:
-    chdir: "{{consul_ca_conf_directory}}"
-    creates: "{{consul_ca_conf_directory}}/cert-consul-key.pem"
+    chdir: "{{ consul_ca_conf_directory }}"
+    creates: "{{ consul_ca_conf_directory }}/cert-consul-key.pem"
   tags:
     - consul-ca
+    - skip_ansible_lint

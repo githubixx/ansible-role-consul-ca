@@ -6,22 +6,12 @@ This role is used in [Kubernetes the Not So Hard Way With Ansible - Ingress with
 Versions
 --------
 
-I tag every release and try to stay with [semantic versioning](http://semver.org) (well kind of...). If you want to use the role I recommend to checkout the latest tag. The master branch is basically development while the tags mark stable releases. But in general I try to keep master in good shape too. A tag `r1.0.0_v1.0.0` means this is release 1.0.0 of this role and it's meant to be used with Consul version 1.0.0. If the role itself changes `rX.Y.Z` will increase. If the Consul version changes `vX.Y.Z` will increase. This allows to tag bugfixes and new major versions of the role while it's still developed for a specific Consul release.
+I tag every release and try to stay with [semantic versioning](http://semver.org). If you want to use the role I recommend to checkout the latest tag. The master branch is basically development while the tags mark stable releases. But in general I try to keep master in good shape too. A tag `1.0.0+1.0.0` means this is release `1.0.0` of this role and it's meant to be used with Consul version `1.0.0` (but may work with other versions too). If the role itself changes `X.Y.Z` before the `+` will increase. If the Consul version changes `X.Y.Z` after the `+` will increase. This allows to tag bugfixes and new major versions of the role while it's still developed for a specific Consul release.
 
 Changelog
 ---------
 
-**r1.0.1_v1.0.2**
-
-- update README
-
-**r1.0.0_v1.0.2**
-
-- only Git tag update for Consul v1.0.2
-
-**r1.0.0_v1.0.0**
-
-- Initial Ansible role.
+see [CHANGELOG.md](https://github.com/githubixx/ansible-role-consul-ca/blob/master/CHANGELOG.md)
 
 Requirements
 ------------
